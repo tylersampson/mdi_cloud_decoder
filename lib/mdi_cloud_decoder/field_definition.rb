@@ -6,7 +6,7 @@ module MdiCloudDecoder
       'BATT_TEMP' => { type: :integer, decimals: 3 },
       'CASE_TEMP' => { type: :integer, decimals: 3 },
       'RSSI' => { type: :integer },
-      'GPS_SPEED' => { type: :integer },
+      'GPS_SPEED' => { type: :speed },
       'GPS_DIR' => { type: :integer, decimals: 2 },
       'ODO_FULL' => { type: :integer },
       'GPS_PDOP' => { type: :integer },
@@ -105,6 +105,10 @@ private
     
     def self.unpack_boolean(val)
       val.unpack('C').first
-    end    
+    end  
+    
+    def self.unpack_speed(val) # Default km per hour
+      val.unpack('N').first * 1.852 / 1000.0
+    end  
   end
 end
