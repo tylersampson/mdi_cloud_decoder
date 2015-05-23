@@ -7,16 +7,8 @@ TODO: Write a gem description
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'mdi_cloud_decoder'
+gem 'mdi_cloud_decoder', :git => 'git@github.com:tylersampson/mdi_cloud_decoder.git'
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install mdi_cloud_decoder
 
 ## Usage
 
