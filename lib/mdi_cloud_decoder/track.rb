@@ -1,5 +1,14 @@
 module MdiCloudDecoder  
   class Track    
+    attr_reader :id,
+      :asset,
+      :latitude,
+      :longitude,
+      :received_at,
+      :recorded_at,
+      :fields,
+      :raw_data
+    
     def initialize(json)      
       # Convert fields as best as possible (speed, coordinates, etc)
       @fields = {}
@@ -17,6 +26,8 @@ module MdiCloudDecoder
       @recorded_at = Time.parse(json['recorded_at'])
       
       @id = json['id']
+      
+      @raw_data = json['fields'].to_json
     end
     
     def respond_to?(method_sym, include_private = false)
