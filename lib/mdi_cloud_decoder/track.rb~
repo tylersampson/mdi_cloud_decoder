@@ -27,7 +27,7 @@ module MdiCloudDecoder
       
       @id = json['id']
       
-      @raw_data = json
+      @raw_data = json['fields'].to_json
     end
     
     def respond_to?(method_sym, include_private = false)
