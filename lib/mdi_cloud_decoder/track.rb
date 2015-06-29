@@ -26,7 +26,7 @@ module MdiCloudDecoder
     end
     
     def respond_to?(method_sym, include_private = false)
-      @fields.include?(method_sym.to_s.upcase) || super(sym, include_private)
+      @fields.include?(method_sym.to_s.upcase) || super(method_sym, include_private)
     end
     
     def method_missing(method_sym, *arguments, &block)
