@@ -2,6 +2,7 @@ module MdiCloudDecoder
   class Track    
     attr_reader :id,
       :asset,
+      :location_provided,
       :latitude,
       :longitude,
       :received_at,
@@ -19,6 +20,7 @@ module MdiCloudDecoder
       @asset = json['asset']
       
       location = json['loc'] || [0,0]
+      @location_provided = json['loc'].present?
       @latitude = location[1]
       @longitude = location[0]
       
