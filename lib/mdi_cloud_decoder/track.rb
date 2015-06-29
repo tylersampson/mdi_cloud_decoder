@@ -1,14 +1,7 @@
 module MdiCloudDecoder  
   class Track    
-    attr_reader :id,
-      :asset,
-      :location_provided,
-      :latitude,
-      :longitude,
-      :received_at,
-      :recorded_at,
-      :fields,
-      :raw_data
+    attr_reader :id, :asset, :received_at, :recorded_at, :raw_data
+    attr_accessor :latitude, :longitude, :fields
     
     def initialize(json)      
       # Convert fields as best as possible (speed, coordinates, etc)
