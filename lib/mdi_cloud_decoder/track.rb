@@ -37,7 +37,7 @@ module MdiCloudDecoder
     end
     
     def method_missing(method_sym, *arguments, &block)
-      @fields[method_sym.to_s.upcase] if @fields.include?(method_sym.to_s.upcase)
+      @fields[method_sym.to_s.upcase] # Return nil if not present 
     end        
   end
 end
