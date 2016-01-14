@@ -1,12 +1,12 @@
 module MdiCloudDecoder
   class FieldDefinition
-    
+
     FIELDS = {
       'BATT_VOLT' => { type: :integer, decimals: 3 },
       'BATT_TEMP' => { type: :integer, decimals: 3 },
       'CASE_TEMP' => { type: :integer, decimals: 3 },
       'RSSI' => { type: :integer },
-      'GPS_SPEED' => { type: :speed },
+      'GPS_SPEED' => { type: :speed, decimals: 3 },
       'GPS_DIR' => { type: :integer, decimals: 2 },
       'ODO_FULL' => { type: :integer },
       'GPS_PDOP' => { type: :integer },
@@ -61,7 +61,7 @@ module MdiCloudDecoder
       'MDI_OVERSPEED_COUNTER' => { type: :integer },
       'MDI_ODO_JOURNEY' => { type: :integer },
       'MDI_MAX_SPEED_JOURNEY' => { type: :integer },
-      
+
       'DIO_IGNITION' => { type: :boolean },
       'BATT' => { type: :boolean },
       'MDI_EXT_BATT_LOW' => { type: :boolean },
@@ -72,10 +72,10 @@ module MdiCloudDecoder
       'MDI_TOW_AWAY' => { type: :boolean },
       'MDI_OVERSPEED' => { type: :boolean },
       'MDI_JOURNEY_STATE' => { type: :boolean },
-      
-      'ODO_PARTIAL_KM' => { type: :float}      
+
+      'ODO_PARTIAL_KM' => { type: :float}
     }
-    
+
     def self.parse(key, data)
       decoded = Base64.decode64(data['b64_value'])
       if FIELDS.include?(key)
@@ -86,7 +86,7 @@ module MdiCloudDecoder
         end
       else #Assume string
         value = unpack_string(decoded)
-      end      
+      end
       value
     end
 
@@ -94,21 +94,21 @@ private
     def self.unpack_integer(val)
       val.unpack('N').first
     end
-    
+
     def self.unpack_string(val)
       val
     end
-    
+
     def self.unpack_float(val)
       val.to_f
     end
-    
+
     def self.unpack_boolean(val)
       val.unpack('C').first
-    end  
-    
+    end
+
     def self.unpack_speed(val) # Default km per hour
       val.unpack('N').first * 1.852 / 1000.0
-    end  
+    end
   end
 end
